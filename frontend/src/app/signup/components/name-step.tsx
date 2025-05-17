@@ -7,29 +7,27 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Mail } from "lucide-react";
+import { User } from "lucide-react";
 
-const emailSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
+const nameSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
 });
 
-type EmailFormValues = z.infer<typeof emailSchema>;
+type NameFormValues = z.infer<typeof nameSchema>;
 
-interface EmailStepProps {
-  initialEmail: string;
-  onSubmit: (email: string) => void;
+interface NameStepProps {
+  initialName: string;
+  onSubmit: (name: string) => void;
 }
 
-export function EmailStep({ initialEmail, onSubmit }: EmailStepProps) {
-  const form = useForm<EmailFormValues>({
-    resolver: zodResolver(emailSchema),
-    defaultValues: {
-      email: initialEmail,
-    },
+export function NameStep({ initialName, onSubmit }: NameStepProps) {
+  const form = useForm<NameFormValues>({
+    resolver: zodResolver(nameSchema),
+    defaultValues: { name: initialName },
   });
 
-  const handleSubmit = (values: EmailFormValues) => {
-    onSubmit(values.email);
+  const handleSubmit = (values: NameFormValues) => {
+    onSubmit(values.name);
   };
 
   return (
@@ -42,10 +40,10 @@ export function EmailStep({ initialEmail, onSubmit }: EmailStepProps) {
           className="text-center space-y-2"
         >
           <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-            Welcome Back
+            Welcome to Atomic Sensei
           </h1>
           <p className="text-slate-600">
-            Enter your email to continue your learning journey
+            Let's start with something simple. What should we call you?
           </p>
         </motion.div>
 
@@ -56,16 +54,16 @@ export function EmailStep({ initialEmail, onSubmit }: EmailStepProps) {
         >
           <FormField
             control={form.control}
-            name="email"
+            name="name"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-5 w-5 text-blue-500" />
+                    <User className="absolute left-3 top-3 h-5 w-5 text-blue-500" />
                     <Input
-                      placeholder="Your email"
+                      placeholder="Your name"
                       className="pl-10 h-12 border-blue-200 focus:border-blue-500 bg-blue-50/50 text-lg rounded-lg"
-                      autoComplete="email"
+                      autoComplete="name"
                       autoFocus
                       {...field}
                     />

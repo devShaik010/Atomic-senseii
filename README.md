@@ -22,7 +22,8 @@ Recognizing the prevalence of short-form content consumption and diminished atte
 
 See Atomic Sensei in action:
 
-https://github.com/username/Atomic-Sensei/assets/username/demo.mp4
+📽️ [Click here to watch the demo video](./demo.mp4)
+
 
 ## 🔄 Learning Flow
 
